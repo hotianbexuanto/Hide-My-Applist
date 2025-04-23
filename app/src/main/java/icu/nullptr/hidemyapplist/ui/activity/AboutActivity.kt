@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.TextView
 import com.drakeet.about.*
-import com.tsng.hidemyapplist.BuildConfig
-import com.tsng.hidemyapplist.R
+import com.hotian.xuantolist.BuildConfig
+import com.hotian.xuantolist.R
 
 class AboutActivity : AbsAboutActivity() {
 
@@ -32,7 +32,7 @@ class AboutActivity : AbsAboutActivity() {
         items.add(Line())
         items.add(Contributor(R.drawable.cont_aviraxp, "aviraxp", "Collaborator", "https://github.com/aviraxp"))
         items.add(Line())
-        items.add(Contributor(R.drawable.cont_icon_designer, "辉少菌", "Icon designer", "http://www.coolapk.com/u/1560270"))
+        items.add(Contributor(R.drawable.cont_icon_designer, "辉少�?, "Icon designer", "http://www.coolapk.com/u/1560270"))
         items.add(Line())
         items.add(Contributor(R.drawable.cont_cpp_master, "LoveSy", "Idea provider", "https://github.com/yujincheng08"))
 
@@ -41,7 +41,7 @@ class AboutActivity : AbsAboutActivity() {
         items.add(Line())
         items.add(Card("Telegram\nhttps://t.me/HideMyApplist"))
         items.add(Line())
-        items.add(Card("Play store\nhttps://play.google.com/store/apps/details?id=com.tsng.hidemyapplist"))
+        items.add(Card("Play store\nhttps://play.google.com/store/apps/details?id=com.hotian.xuantolist"))
 
         items.add(Category(getString(R.string.about_open_source)))
         items.add(License("MultiType", "drakeet", License.APACHE_2, "https://github.com/drakeet/MultiType"))
