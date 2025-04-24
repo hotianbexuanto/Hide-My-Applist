@@ -44,6 +44,11 @@ jobs:
           echo fileDir=`pwd`/key.jks >> local.properties
           chmod +x gradlew
 
+      - name: Setup Git info
+        run: |
+          echo "GITHUB_RUN_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
+          echo "GITHUB_SHA=${{ github.sha }}" >> $GITHUB_ENV
+
       - name: Cache gradle
         uses: actions/cache@v4
         with:
@@ -56,6 +61,7 @@ jobs:
       - name: Gradle prebuild
         run: |
           echo 'org.gradle.jvmargs=-Xmx2048m' >> gradle.properties
+          echo 'org.gradle.configuration-cache=false' >> gradle.properties
           ./gradlew prebuild
 
       - name: Build release

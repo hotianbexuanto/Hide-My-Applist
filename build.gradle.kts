@@ -10,18 +10,9 @@ plugins {
     alias(libs.plugins.nav.safeargs.kotlin) apply false
 }
 
-fun String.execute(currentWorkingDir: File = file("./")): String {
-    val byteOut = java.io.ByteArrayOutputStream()
-    project.exec {
-        workingDir = currentWorkingDir
-        commandLine = split("\\s".toRegex())
-        standardOutput = byteOut
-    }
-    return String(byteOut.toByteArray()).trim()
-}
-
-val gitCommitCount = "git rev-list HEAD --count".execute().toInt()
-val gitCommitHash = "git rev-parse --verify --short HEAD".execute()
+// 为避免在配置阶段执行git命令，我们使用固定值，或从环境变量获取
+val gitCommitCount by extra(System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1000)
+val gitCommitHash by extra(System.getenv("GITHUB_SHA")?.substring(0, 7) ?: "unknown")
 
 val minSdkVer by extra(28)
 val targetSdkVer by extra(35)
