@@ -29,7 +29,7 @@
     <string name="search">Пошук</string>
     <string name="system">Система</string>
     <!-- Home -->
-    <string name="home_xposed_activated">Модуль активовано [%s-%d]</string>
+    <string name="home_xposed_activated" formatted="false">Модуль активовано [%s-%d]</string>
     <string name="home_xposed_not_activated">Модуль не активовано</string>
     <string name="home_xposed_service_on">Системна служба працює [%d]</string>
     <string name="home_xposed_service_off">Системна служба не працює</string>
@@ -88,7 +88,7 @@
     <!-- Settings -->
     <string name="settings_module">Модуль</string>
     <string name="settings_data_isolation">Ізоляція даних</string>
-    <string name="settings_data_isolation_summary">Дані додатку: %s\nПопередні дані додатку: %s\nПримусове монтування: %s</string>
+    <string name="settings_data_isolation_summary" formatted="false">Дані додатку: %s\nПопередні дані додатку: %s\nПримусове монтування: %s</string>
     <string name="settings_data_isolation_unsupported">Цей параметр доступний лише на Android 11 і вище</string>
     <string name="settings_app_data_isolation">Ізоляція даних додатку</string>
     <string name="settings_vold_app_data_isolation">Ізоляція даних додатку Vold</string>

@@ -29,7 +29,7 @@
     <string name="search">بحث</string>
     <string name="system">النظام</string>
     <!-- Home -->
-    <string name="home_xposed_activated">الوحـدة مفعـلة [%s-%d]</string>
+    <string name="home_xposed_activated" formatted="false">الوحـدة مفعـلة [%s-%d]</string>
     <string name="home_xposed_not_activated">الوحـدة غير مفعـلة</string>
     <string name="home_xposed_service_on">خدمـة النظـام تعمـل [%d]</string>
     <string name="home_xposed_service_off">خدمـة النظـام متوقفة</string>
@@ -88,7 +88,7 @@
     <!-- Settings -->
     <string name="settings_module">الوحدة</string>
     <string name="settings_data_isolation">عزل البيانات</string>
-    <string name="settings_data_isolation_summary">App data: %s\nVold app data: %s\nForce mount: %s</string>
+    <string name="settings_data_isolation_summary" formatted="false">App data: %s\nVold app data: %s\nForce mount: %s</string>
     <string name="settings_data_isolation_unsupported">هذا الخِيار متاح فقط في إصدارات Android 11 فأعلي</string>
     <string name="settings_app_data_isolation">عزل بيانات التطبيق</string>
     <string name="settings_vold_app_data_isolation">فرض عزل بيانات التطبيق</string>

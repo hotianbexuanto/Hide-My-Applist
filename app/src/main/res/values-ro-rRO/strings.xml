@@ -29,7 +29,7 @@
     <string name="search">Căutare</string>
     <string name="system">Sistem</string>
     <!-- Home -->
-    <string name="home_xposed_activated">Modul Activat</string>
+    <string name="home_xposed_activated" formatted="false">Modul Activat</string>
     <string name="home_xposed_not_activated">Modul Dezactivat</string>
     <string name="home_xposed_service_on">Serviciul de sistem rulează</string>
     <string name="home_xposed_service_off">Serviciul de sistem nu funcționează</string>
@@ -88,7 +88,7 @@
     <!-- Settings -->
     <string name="settings_module">Module</string>
     <string name="settings_data_isolation">Data isolation</string>
-    <string name="settings_data_isolation_summary">App data: %s\nVold app data: %s\nForce mount: %s</string>
+    <string name="settings_data_isolation_summary" formatted="false">App data: %s\nVold app data: %s\nForce mount: %s</string>
     <string name="settings_data_isolation_unsupported">This option is only available on Android 11 and above</string>
     <string name="settings_app_data_isolation">App data isolation</string>
     <string name="settings_vold_app_data_isolation">Vold app data isolation</string>
