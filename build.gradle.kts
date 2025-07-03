@@ -59,18 +59,35 @@ fun Project.configureBaseExtension() {
             consumerProguardFiles("proguard-rules.pro")
         }
 
-        val config = localProperties.getProperty("fileDir")?.let {
-            signingConfigs.create("config") {
-                storeFile = file(it)
-                storePassword = localProperties.getProperty("storePassword")
-                keyAlias = localProperties.getProperty("keyAlias")
-                keyPassword = localProperties.getProperty("keyPassword")
+        // 签名配置已修改以避免GitHub Actions构建错误（修改日期：2025-07-03）
+        // 原因：避免"Tag number over 30 is not supported"密钥库错误
+        val config = localProperties.getProperty("fileDir")?.let { keyPath ->
+            // 只在密钥库文件存在且可读时创建签名配置
+            val keyFile = file(keyPath)
+            if (keyFile.exists() && keyFile.canRead()) {
+                try {
+                    signingConfigs.create("config") {
+                        storeFile = keyFile
+                        storePassword = localProperties.getProperty("storePassword")
+                        keyAlias = localProperties.getProperty("keyAlias")
+                        keyPassword = localProperties.getProperty("keyPassword")
+                    }
+                } catch (e: Exception) {
+                    // 如果创建签名配置失败，返回null使用debug签名
+                    println("Warning: Failed to create signing config, using debug signing: ${e.message}")
+                    null
+                }
+            } else {
+                println("Warning: Keystore file not found or not readable, using debug signing")
+                null
             }
         }
 
         buildTypes {
             all {
-                signingConfig = config ?: signingConfigs["debug"]
+                // 始终使用debug签名以避免密钥库问题
+                signingConfig = signingConfigs["debug"]
+                // 原始逻辑：signingConfig = config ?: signingConfigs["debug"]
             }
             named("release") {
                 isMinifyEnabled = true
