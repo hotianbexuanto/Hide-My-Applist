@@ -54,9 +54,14 @@ object UserService {
         val service = HMAService(pms)
         appUid = Utils.getPackageUidCompat(service.pms, Constants.APP_PACKAGE_NAME, 0, 0)
         val appPackage = Utils.getPackageInfoCompat(service.pms, Constants.APP_PACKAGE_NAME, 0, 0)
+
+        // 注意：应用签名验证已被禁用（修改日期：2025-07-03）
+        // 原因：允许修改后的应用正常运行，绕过签名检查
+        // 如需恢复签名验证，请取消注释下方的验证逻辑
         if (!Utils.verifyAppSignature(appPackage.applicationInfo?.sourceDir.toString())) {
-            logE(TAG, "Fatal: App signature mismatch")
-            return
+            // 签名验证失败，但已禁用验证 - 继续执行而不是返回
+            logW(TAG, "App signature verification disabled - continuing service initialization")
+            // 原始行为：logE(TAG, "Fatal: App signature mismatch") 然后 return
         }
         logD(TAG, "Client uid: $appUid")
         logI(TAG, "Register observer")

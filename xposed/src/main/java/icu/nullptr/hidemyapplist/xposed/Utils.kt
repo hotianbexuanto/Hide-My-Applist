@@ -25,7 +25,21 @@ object Utils {
         return buffer.toString()
     }
 
+    /**
+     * 应用签名验证函数
+     *
+     * 注意：此函数的签名验证已被禁用（修改日期：2025-07-03）
+     * 原因：为了允许修改后的应用正常运行，绕过签名检查
+     *
+     * 原始验证逻辑已保留在下方注释中，如需恢复签名验证，
+     * 请取消注释原始代码并注释掉 "return true" 行
+     */
     fun verifyAppSignature(path: String): Boolean {
+        // 签名验证已禁用 - 始终返回 true
+        return true
+
+        /*
+        // === 原始签名验证逻辑（已禁用）===
         val verifier = ApkVerifier.Builder(File(path))
             .setMinCheckedPlatformVersion(24)
             .build()
@@ -33,6 +47,8 @@ object Utils {
         if (!result.isVerified) return false
         val mainCert = result.signerCertificates[0]
         return mainCert.encoded.contentEquals(Magic.magicNumbers)
+        // === 原始签名验证逻辑结束 ===
+        */
     }
 
     fun <T> binderLocalScope(block: () -> T): T {
