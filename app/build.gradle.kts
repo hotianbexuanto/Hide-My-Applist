@@ -14,7 +14,8 @@ plugins {
     alias(libs.plugins.nav.safeargs.kotlin)
 }
 
-if (officialBuild) {
+// 只在官方构建且google-services.json文件存在时应用Google Services插件
+if (officialBuild && file("google-services.json").exists()) {
     plugins.apply(libs.plugins.gms.get().pluginId)
 }
 
