@@ -32,8 +32,23 @@ afterEvaluate {
         val signInfoTask = tasks.register("generate${variantCapped}SignInfo") {
             outputs.file(outSrc)
             doLast {
-                val sign = android.buildTypes[variantLowered].signingConfig
+                // 注意：签名验证已禁用（修改日期：2025-07-03）
+                // 生成空的Magic类以避免构建错误
+                // 原始逻辑已注释，如需恢复请取消注释
+
                 outSrc.asFile.parentFile.mkdirs()
+                PrintStream(outSrc.asFile).apply {
+                    println("package icu.nullptr.hidemyapplist;")
+                    println("// 注意：签名验证已禁用，此类仅为兼容性保留")
+                    println("public final class Magic {")
+                    println("    // 空的魔术数字数组 - 签名验证已禁用")
+                    println("    public static final byte[] magicNumbers = {};")
+                    println("}")
+                }
+
+                /*
+                // === 原始签名信息生成逻辑（已禁用）===
+                val sign = android.buildTypes[variantLowered].signingConfig
                 val certificateInfo = KeystoreHelper.getCertificateInfo(
                     sign?.storeType,
                     sign?.storeFile,
@@ -50,6 +65,8 @@ afterEvaluate {
                     println("};")
                     println("}")
                 }
+                // === 原始签名信息生成逻辑结束 ===
+                */
             }
         }
         variant.registerJavaGeneratingTask(signInfoTask, outSrcDir.get().asFile)
