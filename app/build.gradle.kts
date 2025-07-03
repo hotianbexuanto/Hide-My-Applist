@@ -14,10 +14,17 @@ plugins {
     alias(libs.plugins.nav.safeargs.kotlin)
 }
 
-// 只在官方构建且google-services.json文件存在时应用Google Services插件
+// Google Services插件已完全禁用（修改日期：2025-07-03）
+// 原因：避免GitHub Actions构建时的"Malformed root json at google-services.json"错误
+// 如需恢复Google Services功能，请取消注释下方代码并确保google-services.json文件正确配置
+
+/*
+// === 原始Google Services插件应用逻辑（已禁用）===
 if (officialBuild && file("google-services.json").exists()) {
     plugins.apply(libs.plugins.gms.get().pluginId)
 }
+// === 原始Google Services插件应用逻辑结束 ===
+*/
 
 android {
     namespace = "com.tsng.hidemyapplist"
